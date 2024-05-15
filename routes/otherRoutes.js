@@ -21,20 +21,28 @@ router.post("/analyse-text", isAuthenticated, async (req, res) => {
     const eventDetails = analyzedText.eventDetails;
     const operation = analyzedText.operation;
 
-    const auth = new google.auth.GoogleAuth({
-      credentials: key,
-      scopes: [
-        "profile",
-        "https://www.googleapis.com/auth/calendar",
-        "https://www.googleapis.com/auth/calendar.events",
-      ],
-    });
+    console.log(req.user.accessToken);
+    console.log(req.user.refreshToken);
 
-    const authClient = await auth.getClient();
+    // const auth = new google.auth.GoogleAuth({
+    //   credentials: key,
+    //   scopes: [
+    //     "profile",
+    //     "https://www.googleapis.com/auth/calendar",
+    //     "https://www.googleapis.com/auth/calendar.events",
+    //   ],
+    // });
+
+    const auth = new google.auth.OAuth2();
+    auth.setCredentials({
+      access_token: req.user.accessToken,
+    })
+
+    // const authClient = await auth.getClient();
 
     const calendar = await google.calendar({
       version: "v3",
-      auth: authClient,
+      auth: auth,
     });
 
     if (operation === "create") {

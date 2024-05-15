@@ -27,7 +27,6 @@ passport.use(
         refreshToken: refreshToken,
         profile: profile,
       };
-      console.log("Refresh Token: ", refreshToken);
       return done(null, user);
     }
   )
