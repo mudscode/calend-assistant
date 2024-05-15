@@ -1,0 +1,42 @@
+/* Reset default margin and padding */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Center the content vertically and horizontally */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(183, 186, 181);
+  font-family: Arial, sans-serif;
+}
+
+/* Style the button */
+.google button {
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: black; /* Google blue */
+  color: #ffffff; /* White text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow effect */
+  transition: background-color 0.3s ease;
+}
+
+.google button:hover {
+  background-color: rgb(42, 43, 44); /* Darker blue on hover */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+  .google button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
