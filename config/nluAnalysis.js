@@ -8,27 +8,41 @@ const openai = new OpenAi({
 });
 
 const userCommandToAnalyze = async (text) => {
-  let context = `Analyze the text to generate just the json details suitable for the Google Calendar API with no extra text. Timezone is Pakistan/Karachi. Specify whether it's creating or deleting an event and convert the details to a JSON object with the following structure and stay consistent:
-  eventDetails = 
+  let context = `
+  Analyze the provided text and generate a JSON object suitable for creating or deleting an event in the Google Calendar API. Please adhere strictly to the following structure and details, ensuring all date and time values are correctly formatted.
+
+  The timezone is "Asia/Karachi" (GMT+05:00). The JSON object should include the necessary details for the Google Calendar event extracted from the text that's to be analyzed, and the operation (create or delete) should be specified explicitly. If you can't get any info about the specified fields, leave them empty.
+
+  JSON Structure:
   {
-    "summary": "Meeting with John",
-    "location": "Conference Room A",
-    "description": "Discuss project milestones",
-    "start": {
-      "dateTime": "2024-05-10T10:00:00",  // Updated Time (The given is just an example)
-      "timeZone": "(GMT+05:00) Pakistan Standard Time"
+    "eventDetails": {
+      "summary": "Meeting with John",
+      "location": "Conference Room A",
+      "description": "Discuss project milestones",
+      "start": {
+        "dateTime": "2024-05-10T10:00:00+05:00",
+        "timeZone": "Asia/Karachi"
+      },
+      "end": {
+        "dateTime": "2024-05-10T10:00:00+05:00",
+        "timeZone": "Asia/Karachi"
+      },
+      "attendees": [],
+      "reminders": {
+        "useDefault": true
+      }
     },
-    "end": {
-      "dateTime": "2024-05-10T11:00:00",  // Updated Time (The given is just an example)
-      "timeZone": "(GMT+05:00) Pakistan Standard Time"
-    },
-    "attendees": [],
-    "reminders": {
-      "useDefault": true,
-    },
+    "operation": "create" // or "delete"
   }
-    operation = { "operation": "delete/create"};
-    Just this, don't return anything extra.`;
+
+  Notes:
+  - Ensure that the "start" and "end" dateTime fields follow the ISO 8601 format: YYYY-MM-DDTHH:MM:SS.
+  - The timeZone should be "Asia/Karachi".
+  - Include all fields even if they are empty, such as "attendees".
+  - The "operation" field must be either "create" or "delete".
+
+  Generate only the JSON object as specified, with no additional text or explanations.
+  `;
 
   try {
     const completion = await openai.chat.completions.create({

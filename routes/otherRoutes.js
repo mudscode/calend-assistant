@@ -3,7 +3,6 @@
 const router = require("express").Router();
 const { userCommandToAnalyze } = require("../config/nluAnalysis");
 const { google } = require("googleapis");
-const key = require("../serviceKey.json");
 
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -21,24 +20,13 @@ router.post("/analyse-text", isAuthenticated, async (req, res) => {
     const eventDetails = analyzedText.eventDetails;
     const operation = analyzedText.operation;
 
-    console.log(req.user.accessToken);
-    console.log(req.user.refreshToken);
-
-    // const auth = new google.auth.GoogleAuth({
-    //   credentials: key,
-    //   scopes: [
-    //     "profile",
-    //     "https://www.googleapis.com/auth/calendar",
-    //     "https://www.googleapis.com/auth/calendar.events",
-    //   ],
-    // });
+    console.log("Event details: ", eventDetails);
+    console.log("Operation: ", operation);
 
     const auth = new google.auth.OAuth2();
     auth.setCredentials({
       access_token: req.user.accessToken,
-    })
-
-    // const authClient = await auth.getClient();
+    });
 
     const calendar = await google.calendar({
       version: "v3",
@@ -51,10 +39,16 @@ router.post("/analyse-text", isAuthenticated, async (req, res) => {
         resource: eventDetails,
       });
 
-      console.log(result.data);
+      console.log("Event details: ", result.data);
+      console.log("Event HTML link: ", result.data.htmlLink);
       return res.status(200).send("Event Created Successfully:");
     } else if (operation === "delete") {
-      //
+      // event id getting
+
+      await calendar.events.delete({
+        calendarId: "primary",
+        eventId: eventId,
+      });
     }
   } catch (error) {
     console.error("Error during API request:", error);

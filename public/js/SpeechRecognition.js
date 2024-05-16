@@ -5,13 +5,13 @@ const transcript = document.getElementById("transcript");
 const proceedBtn = document.getElementById("proceedBtn");
 const discardBtn = document.getElementById("discardBtn");
 const transdiv = document.querySelector(".transdiv");
-let recognition;
 
 const startSpeechRecognition = async () => {
   try {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
-    recognition = new SpeechRecognition();
+
+    let recognition = new SpeechRecognition();
 
     recognition.lang = "en-US";
     recognition.continuous = true;

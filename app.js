@@ -35,7 +35,7 @@ app.use(
   })
 );
 const corsOptions = {
-  origin: "http://localhost:8080", // Allow requests from this origin
+  origin: "http://localhost:8080",
   methods: "GET,POST",
   allowedHeaders: "Content-Type,Authorization",
 };

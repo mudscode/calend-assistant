@@ -1,76 +1,77 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #b7bab5;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  background-color: #b7bab5;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .imgdiv {
-    display: flex;
-    justify-content: space-between;
-    /* background-color: lavender; */
-    align-items: center;
-    gap: 5em;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 100px 0 50px 0;
-    padding-bottom: 2em;
-    /* border-bottom: 1px solid gray; */
+  display: flex;
+  justify-content: space-between;
+  /* background-color: lavender; */
+  align-items: center;
+  gap: 5em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 100px 0 50px 0;
+  padding-bottom: 2em;
+  /* border-bottom: 1px solid gray; */
 }
 
 a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    width: 190px;
-    border-radius: 14px;
-    background: #b7bab5;
-    box-shadow: 5px 5px 10px #9c9e9a,
-        -5px -5px 10px #d2d6d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 190px;
+  border-radius: 14px;
+  background: #b7bab5;
+  box-shadow: 5px 5px 10px #9c9e9a, -5px -5px 10px #d2d6d0;
 }
 
 img {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 p {
-    margin-top: 20px;
-    font-size: 21px !important;
-    text-transform: capitalize;
-    font-weight: 200;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 1em 0;
+  margin-top: 20px;
+  font-size: 21px !important;
+  text-transform: capitalize;
+  font-weight: 200;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 1em 0;
 }
 
-
 .transdiv {
-    display: none;
-    width: 68%;
-    margin: 0 auto;
-    /* Initially hide the transcript div */
+  display: none;
+  width: 68%;
+  margin: 0 auto;
+  /* Initially hide the transcript div */
 }
 
 .transdiv button {
-    padding: .5em 1em;
-    border: none;
-    outline: none;
-    transition: .2s all ease-in-out;
-    cursor: pointer;
-    font-weight: 700;
-    font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+  padding: 0.7em 1.8em;
+  border: none;
+  outline: none;
+  transition: 0.1s all ease-in-out;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: transparent;
+  border: 1px solid gray;
 }
 
 .transdiv button:hover {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
