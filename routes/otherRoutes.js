@@ -41,7 +41,11 @@ router.post("/analyse-text", isAuthenticated, async (req, res) => {
 
       console.log("Event details: ", result.data);
       console.log("Event HTML link: ", result.data.htmlLink);
-      return res.status(200).send("Event Created Successfully:");
+      return res.status(200).json({
+        eventId: result.data.id,    
+        summary: result.data.summary,
+        htmlLink: result.data.htmlLink,
+      });
     } else if (operation === "delete") {
       // event id getting
 

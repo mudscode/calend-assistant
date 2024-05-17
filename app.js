@@ -5,6 +5,8 @@ const session = require("express-session");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const path = require("path");
+const https = require("https");
+const fs = require("fs");
 const passport = require("./config/passportAuth.js");
 const cors = require("cors");
 
@@ -62,8 +64,14 @@ app.use(passport.session());
 app.use("/auth", authRoutes);
 app.use(otherRoutes);
 
+const privateKey = fs.readFileSync("./certs/private.key", "utf8");
+const certificate = fs.readFileSync("./certs/server.crt", "utf8");
+const credentials = { key: privateKey, cert: certificate };
+
+const httpsServer = https.createServer(credentials, app);
+
 const port = process.env.PORT || 3000;
 
-const server = app.listen(port, () => {
+httpsServer.listen(port, '0.0.0.0', () => {
   console.log(`Listening or port ${port}`);
 });

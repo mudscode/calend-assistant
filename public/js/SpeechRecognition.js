@@ -45,25 +45,29 @@ proceedBtn.addEventListener("click", async () => {
 
   if (text) {
     try {
-      const response = await fetch("http://localhost:8080/analyse-text", {
+      const mobileTest = "https://198.168.18.34:8080/analyse-text";
+      const analyseRouteLink = "https://localhost:8080/analyse-text";
+
+      const response = await fetch(analyseRouteLink, {
         method: "POST",
         body: JSON.stringify({ text }),
         headers: { "Content-Type": "application/json" },
       });
 
       if (response.ok) {
-        const data = await response.text();
-        console.log("Response: ", data);
-        console.log("Data sent successfully.");
+        const eventDetails = await response.json();
+
+        document.getElementById("eventId").textContent = eventDetails.eventId;
+        document.getElementById("eventLink").href = eventDetails.htmlLink;
+
+        const eventDetailsContainer = document.getElementById("eventDetails");
+        eventDetailsContainer.style.display = "block";
       } else {
         throw new Error("Request unsuccessful: ", response.status);
       }
     } catch (error) {
       console.error(error);
     }
-
-    transdiv.style.display = "none";
-    transcript.innerHTML = "";
   }
 });
 

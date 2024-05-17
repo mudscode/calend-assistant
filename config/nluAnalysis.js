@@ -9,11 +9,19 @@ const openai = new OpenAi({
 
 const userCommandToAnalyze = async (text) => {
   let context = `
-  Analyze the provided text and generate a JSON object suitable for creating or deleting an event in the Google Calendar API. Please adhere strictly to the following structure and details, ensuring all date and time values are correctly formatted.
+  Analyze the provided text and generate a JSON object suitable for creating or deleting an event in the Google Calendar API. Please follow the guidelines below and ensure all date and time values are correctly formatted.
 
-  The timezone is "Asia/Karachi" (GMT+05:00). The JSON object should include the necessary details for the Google Calendar event extracted from the text that's to be analyzed, and the operation (create or delete) should be specified explicitly. If you can't get any info about the specified fields, leave them empty.
+  **Instructions:**
+  - **Date and Time:** Provide clear date and time information in your command. You can use phrases like "today", "tomorrow", or specify the exact date and time.
+  - **Event Details:** Specify the details of the event such as summary, location, and description.
+  - **Operation:** Explicitly mention whether you want to create or delete the event.
 
-  JSON Structure:
+  **Sample Commands:**
+  - Create an event "Meeting with John" at 2 PM today to discuss project milestones.
+  - Schedule a meeting tomorrow at 10 AM in Conference Room A.
+  - Delete the event "Lunch with clients" on May 20th.
+
+  **JSON Structure:**
   {
     "eventDetails": {
       "summary": "Meeting with John",
@@ -35,7 +43,7 @@ const userCommandToAnalyze = async (text) => {
     "operation": "create" // or "delete"
   }
 
-  Notes:
+  **Notes:**
   - Ensure that the "start" and "end" dateTime fields follow the ISO 8601 format: YYYY-MM-DDTHH:MM:SS.
   - The timeZone should be "Asia/Karachi".
   - Include all fields even if they are empty, such as "attendees".
@@ -60,6 +68,7 @@ const userCommandToAnalyze = async (text) => {
     });
 
     const response = completion.choices[0].message.content;
+    console.log(response);
 
     const startIndex = response.indexOf("{");
     const endIndex = response.lastIndexOf("}");

@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Google Calendar Assistant | Home</title>
     <link rel="stylesheet" href="/css/index.css" />
+    <link rel="manifest" href="/manifest.json">
   </head>
 
   <body>
@@ -19,7 +20,13 @@
       <button id="proceedBtn">Proceed</button>
       <button id="discardBtn">Discard</button>
     </div>
+    <div id="eventDetails" style="display: none">
+      <h2>Event Details</h2>
+      <p>Event ID: <span id="eventId"></span></p>
+      <a href="#" id="eventLink" target="_blank">View in Google Calendar</a>
+    </div>
 
+    <script src="/serviceWorker.js"></script>
     <script src="/js/SpeechRecognition.js"></script>
   </body>
 </html>

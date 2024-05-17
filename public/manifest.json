@@ -1,0 +1,16 @@
+{
+  "name": "Google Calendar Assistant",
+  "short_name": "Calendar Assistant",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#b7bab5",
+  "theme_color": "#b7bab5",
+  "description": "A voice-based assistant to manage your Google Calendar.",
+  "icons": [
+    {
+      "src": "./images/voice.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

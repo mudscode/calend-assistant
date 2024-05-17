@@ -21,12 +21,12 @@ body {
   align-items: center;
   gap: 5em;
   font-family: Arial, Helvetica, sans-serif;
-  margin: 100px 0 50px 0;
+  margin: 100px 0 25px 0;
   padding-bottom: 2em;
   /* border-bottom: 1px solid gray; */
 }
 
-a {
+.imgdiv a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,4 +74,52 @@ p {
 .transdiv button:hover {
   background-color: black;
   color: white;
+}
+
+
+#eventDetails{
+     font-family: Arial, Helvetica, sans-serif;
+     align-self: flex-start;
+     padding: 0 0 0 13em;
+     margin: 2em 0 0 0;
+     display: flex;
+     flex-direction: column;
+     gap: 1em;
+}
+#eventDetails a{
+  border-radius: 5px;
+  padding: 0.7em 1.8em;
+  border: none;
+  outline: none;
+  transition: 0.1s all ease-in-out;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: transparent;
+  border: 1px solid gray;
+  text-decoration: none;
+  color: black;
+}
+#eventDetails a:hover{
+  background-color: black;
+  color: white;
+}
+
+/* ////////////////////// RESPONSIVENESS ////////////////////////// */
+
+@media only screen and (max-width: 950px) {
+  .imgdiv {
+    flex-direction: column;
+    margin: 2em 0 50px 0;
+  }
+
+  .imgdiv h1 {
+    font-size: 1.4rem;
+    align-self: center;
+  }
+
+  #eventDetails{
+    padding: 0;
+    align-self: center;
+  }
 }
