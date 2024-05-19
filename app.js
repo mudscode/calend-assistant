@@ -64,14 +64,20 @@ app.use(passport.session());
 app.use("/auth", authRoutes);
 app.use(otherRoutes);
 
-const privateKey = fs.readFileSync("./certs/private.key", "utf8");
-const certificate = fs.readFileSync("./certs/server.crt", "utf8");
-const credentials = { key: privateKey, cert: certificate };
+if (process.env.NODE_ENV === "production") {
+  const port = process.env.PORT || 3000;
 
-const httpsServer = https.createServer(credentials, app);
-
-const port = process.env.PORT || 3000;
-
-httpsServer.listen(port, '0.0.0.0', () => {
-  console.log(`Listening or port ${port}`);
-});
+  app.listen(port, () => {
+    console.log(`Http server running on port ${port}`);
+  });
+} else {
+  const credentials = {
+    key: fs.readFileSync("./certs/private.key", "utf8"),
+    cert: fs.readFileSync("./certs/server.crt", "utf8"),
+  };
+  const httpsServer = https.createServer(credentials, app);
+  const port = process.env.PORT || 3000;
+  httpsServer.listen(port, "0.0.0.0", () => {
+    console.log(`Listening or port ${port}`);
+  });
+}

@@ -45,10 +45,11 @@ proceedBtn.addEventListener("click", async () => {
 
   if (text) {
     try {
-      const mobileTest = "https://198.168.18.34:8080/analyse-text";
-      const analyseRouteLink = "https://localhost:8080/analyse-text";
+      const localTest = "https://localhost:8080/analyse-text";
+      // const analyseRouteLink = "https://localhost:8080/analyse-text";
+      // const ngrokLink = "https://e31c-182-183-11-230.ngrok-free.app/analyse-text"
 
-      const response = await fetch(analyseRouteLink, {
+      const response = await fetch(localTest, {
         method: "POST",
         body: JSON.stringify({ text }),
         headers: { "Content-Type": "application/json" },
